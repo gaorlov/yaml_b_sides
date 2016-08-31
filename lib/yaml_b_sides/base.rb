@@ -1,6 +1,7 @@
 module YamlBSides
   class Base
     include ActiveModel::Model
+    include Cacheale
     include Propertiable
     include Instanceable
     include Queriable
