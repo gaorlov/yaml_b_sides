@@ -9,6 +9,7 @@ require 'yaml'
 
 module YamlBSides
   autoload :Base,           'yaml_b_sides/base'
+  autoload :Cacheable,      'yaml_b_sides/cacheable'
   autoload :Instanceable,   'yaml_b_sides/instanceable'
   autoload :Propertiable,   'yaml_b_sides/propertiable'
   autoload :Queriable,      'yaml_b_sides/queriable'
