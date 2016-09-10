@@ -96,7 +96,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/yaml_b_sides.
+Bug reports and pull requests are welcome on GitHub at https://github.com/gaorlov/yaml_b_sides.
 
 
 ## License
