@@ -11,6 +11,8 @@ module YamlBSides
   autoload :Base,           'yaml_b_sides/base'
   autoload :Cacheable,      'yaml_b_sides/cacheable'
   autoload :Instanceable,   'yaml_b_sides/instanceable'
+  autoload :Index,          'yaml_b_sides/index'
+  autoload :Indexable,      'yaml_b_sides/indexable'
   autoload :Propertiable,   'yaml_b_sides/propertiable'
   autoload :Queriable,      'yaml_b_sides/queriable'
 end

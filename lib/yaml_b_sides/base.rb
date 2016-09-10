@@ -3,6 +3,7 @@ module YamlBSides
     include ActiveModel::Model
     include Cacheable
     include Propertiable
+    include Indexable
     include Instanceable
     include Queriable
 
@@ -12,7 +13,6 @@ module YamlBSides
     class << self
 
       def load!
-        puts data_file
         @data = YAML.load_file( data_file ).with_indifferent_access
         idify_data!
         puts "#{self} successfully loaded data"

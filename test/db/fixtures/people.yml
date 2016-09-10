@@ -1,3 +1,35 @@
+greg: 
+  name: Greg Orlov
+  url_slug: greg-orlov
+  title: Senior Development Engineer
+  bio: |
+    I do things like
+    * climbing
+    * taking photos
+    * taking photos of climbing
+    * programming
+    * takign photos of programming?
+  photo_url: http://placekitten.com/800/800
+
+abby: 
+  name: Abby Kulkin
+  url_slug: abby-kulkin
+  title: Therapist
+  bio: |
+    I am super awesome and cool. Too cool for this lame bio
+  photo_url: http://placekitten.com/800/800
+
+josh: 
+  name: Josh Dreher
+  url_slug: josh-dreher
+  title: Engineer
+  bio: |
+    I do things like
+    * climbing
+    * taking photos of stars
+    * enginnering nuclear things
+  photo_url: http://placekitten.com/800/800
+
 teal:
   name: Teal Dreher
   url_slug: teal-dreher
