@@ -15,7 +15,7 @@ module YamlBSides
           keys = Array(index_for(field).find(value))
           
           keys.map do |id|
-            find(id)
+            @data[id]
           end
         end
 

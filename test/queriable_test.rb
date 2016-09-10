@@ -13,6 +13,11 @@ class QueriableTest < Minitest::Test
     assert Person.find_by( url_slug: "josh-dreher", name: "Josh Dreher" )
   end
 
+  def test_find_and_find_by_return_an_object
+    assert_equal Person, Person.find( :josh ).class
+    assert_equal Person, Person.find_by( url_slug: "josh-dreher" ).class
+  end
+
   def test_unindexed_find_by_warns
     Person.logger = TestLogger.new :print
     assert_output "You are running a query on Person.url_slug which is not indexed. This will perform a table scan." do

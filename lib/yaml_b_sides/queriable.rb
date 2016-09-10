@@ -10,10 +10,11 @@ module YamlBSides
 
         def find_by(params = {})
           if all_indexed?(params.keys)
-            find_by_indexed(params)
+            results = find_by_indexed(params)
           else
-            find_by_scan(params)
+            results = find_by_scan(params)
           end
+          new results.first
         end
 
         def all
@@ -29,12 +30,11 @@ module YamlBSides
         private
 
         def find_by_scan(params)
-          result = @data.values.find do |datum|
+          @data.values.select do |datum|
             params.all? do |param, expcted_value|
               datum[param] == expcted_value
             end
           end
-          result ? new(result) : nil
         end
 
         def find_by_indexed(params)
@@ -46,7 +46,7 @@ module YamlBSides
           # find the intersection of all the sets
           sets.inject( sets.first ) do |result, subset|
             result & subset
-         end
+          end
         end
 
         def all_indexed?(fields)
