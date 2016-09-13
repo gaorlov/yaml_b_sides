@@ -30,4 +30,17 @@ class QueriableTest < Minitest::Test
     ids = Person.all.map(&:id)
     assert_equal ["greg", "abby", "josh", "teal"], ids
   end
+
+  def test_find_miss_raises
+    assert_raises "Record not found: lolwat" do
+      Person.find :lolwat
+    end
+  end
+
+  def test_find_by_miss_raises
+    params = { id: :lolwat }
+    assert_raises "Could not find record that matches: #{params.inspect}" do
+      Person.find_by params
+    end
+  end
 end

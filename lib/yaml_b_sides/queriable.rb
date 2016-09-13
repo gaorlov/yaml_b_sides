@@ -5,7 +5,9 @@ module YamlBSides
     included do
       class << self
         def find(id)
-          new @data[id]
+          record = @data[id]
+          raise "Record not found: #{id}" unless record
+          new record
         end
 
         def find_by(params = {})
@@ -14,6 +16,7 @@ module YamlBSides
           else
             results = find_by_scan(params)
           end
+          raise "Could not find record that matches: #{params.inspect}" if results.empty?
           new results.first
         end
 
