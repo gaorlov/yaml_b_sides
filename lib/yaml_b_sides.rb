@@ -8,6 +8,8 @@ require 'active_support/core_ext/hash'
 require 'yaml'
 
 module YamlBSides
+  autoload :Associatable,   'yaml_b_sides/associatable'
+  autoload :Associations,   'yaml_b_sides/associations'
   autoload :Base,           'yaml_b_sides/base'
   autoload :Cacheable,      'yaml_b_sides/cacheable'
   autoload :Instanceable,   'yaml_b_sides/instanceable'

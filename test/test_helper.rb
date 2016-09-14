@@ -26,4 +26,17 @@ end
 class Fake < YamlBSides::Base
 end
 
+class Logo < YamlBSides::Base
+  belongs_to :manufacturer
+end
+
+class Manufacturer < YamlBSides::Base
+  has_many :shoes
+  has_one  :logo
+end
+
+class Shoe < YamlBSides::Base
+  belongs_to :manufacturer
+end
+
 require 'minitest/autorun'

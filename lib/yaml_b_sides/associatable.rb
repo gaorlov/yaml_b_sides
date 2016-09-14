@@ -1,0 +1,51 @@
+module YamlBSides
+  module Associatable
+    extend ActiveSupport::Concern
+
+    included do
+      class_attribute :__associations
+      self.__associations = {}
+
+      attr_accessor :_cached_associations
+
+      class << self
+
+        def belongs_to( name, opts = {} )
+          process Associations::BelongsTo.new( self, name, opts )
+        end
+
+        def has_one( name, opts = {} )
+          process Associations::HasOne.new( self, name, opts )
+        end
+
+        def has_many( name, opts = {} )
+          process Associations::HasMany.new( self, name, opts )
+        end
+        
+        protected
+
+        def process( association )
+          associate association
+          methodize association
+        end
+
+        def associate( association )
+          self.__associations = __associations.merge association.name => association
+        end
+
+        def methodize( association )
+          define_method association.name do 
+            self._cached_associations ||= {}
+
+            unless self._cached_associations.has_key? association.name
+              result = association.klass.send( association.action, association.query( self ) )
+              
+              self._cached_associations[association.name] = result
+            end
+            self._cached_associations[association.name]
+          end
+        end
+      end
+    end
+  end
+end

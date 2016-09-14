@@ -2,6 +2,7 @@ require 'test_helper'
 
 class IndexableTest < Minitest::Test
   def setup 
+    Person.__indices = {}
     Person.index(:name)
     refute_empty Person.__indices
   end
@@ -13,7 +14,7 @@ class IndexableTest < Minitest::Test
   def test_can_add_index
     Person.index(:name)
     refute_empty Person.__indices
-    assert_equal :name, Person.__indices.keys.first
+    assert_equal [:name], Person.__indices.keys
   end
 
   def test_index_silinces_find_by_warnings

@@ -4,7 +4,7 @@ module YamlBSides
 
     included do
       class_attribute :__indices
-      self.__indices = {}
+      self.__indices = { }
 
       class << self
         def index(field)
@@ -28,7 +28,6 @@ module YamlBSides
         def index_for(field)
           __indices[field]
         end
-
       end
     end
   end

@@ -1,6 +1,7 @@
 module YamlBSides
   class Base
     include ActiveModel::Model
+    include Associatable
     include Cacheable
     include Propertiable
     include Indexable
@@ -15,7 +16,9 @@ module YamlBSides
       def load!
         @data = YAML.load_file( data_file ).with_indifferent_access
         idify_data!
-        puts "#{self} successfully loaded data"
+        logger.info "#{self} successfully loaded data"
+        # let's preemptively index by id so that when we do a find_by id:, or a where id: it won't table scan
+        index :id
       rescue => e
         logger.error "#{self} failed to load data: #{e}"
       end

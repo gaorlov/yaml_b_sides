@@ -64,6 +64,18 @@ These are completely optional, but if you have a yaml file that's not uniform, a
 * `property( name, defaul= nil )` : will set a single field. will set defaul value to nil if omitted
 * `properties( props = {})` : takes a hash; will set many defaults at once
 
+### Associations
+
+You can define simple associations that behave very much like ActiveRecord associations. Once you define your association, you will have a method with that name that will do the lookups and cache the results for you.
+
+* `belongs_to association`: the base object has to have the association id
+  * will return a single object or nil
+* `has_one`: the assiociation object has the id of the base. 
+  * will return a single object or nil
+* `has_many`: the association object has the id of the base.
+  * will return an array
+
+
 ### Example
 
 To use the `People` class from earlier, a fully fleshed out model would look something like:
@@ -74,10 +86,33 @@ class Person < YamlBSides::Base
   properties url_slug: "",
              bio: ""
 
+  has_many :nicknames
+
   index :name
   index :url_slug
 end
+
+class Nickname < YamlBSides::Base
+  belongs_to :person
+end
+
 ```
+
+and the YAML files will look like
+
+```yml
+# in people.yml
+mark_twain:
+  name: Mark Twain
+  url_slug: mark-twain
+  #...
+
+# in nicknames.yml
+sam_clemmens:
+  name: Samuel Clemmens
+  person_id: mark_twain
+```
+
 
 ## Setup
 

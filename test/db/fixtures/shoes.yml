@@ -1,0 +1,14 @@
+solution:
+  manufacturer_id: la_sportiva
+  name: Solution
+  type: velcro
+
+speedster:
+  manufacturer_id: la_sportiva
+  name: Speedster
+  type: slip-on
+
+team:
+  manufacturer_id: five_ten
+  name: Team 5.10
+  type: velcro

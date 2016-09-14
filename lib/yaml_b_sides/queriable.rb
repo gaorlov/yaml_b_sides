@@ -11,13 +11,9 @@ module YamlBSides
         end
 
         def find_by(params = {})
-          if all_indexed?(params.keys)
-            results = find_by_indexed(params)
-          else
-            results = find_by_scan(params)
-          end
+          results = where params
           raise "Could not find record that matches: #{params.inspect}" if results.empty?
-          new results.first
+          results.first
         end
 
         def all
@@ -28,6 +24,18 @@ module YamlBSides
 
         def first
           new @data.values.first
+        end
+
+        # TODO: move this into scopes
+        def where(params)
+          if all_indexed?(params.keys)
+            results = find_by_indexed(params)
+          else
+            results = find_by_scan(params)
+          end
+          results.map do |result|
+            new result
+          end
         end
 
         private
