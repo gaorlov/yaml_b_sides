@@ -1,12 +1,10 @@
 module YamlBSides
   module Associations
     class HasMany < Base
+      include Through
+
       def action
         :where
-      end
-
-      def query( instance )
-        { key => instance.id }
       end
     end
   end

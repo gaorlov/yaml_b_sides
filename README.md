@@ -75,6 +75,45 @@ You can define simple associations that behave very much like ActiveRecord assoc
 * `has_many`: the association object has the id of the base.
   * will return an array
 
+#### Assocaition Options
+
+Associations have some of the standard ActiveRecord options. Namely:
+* `class`: specifies the class to find the record in.
+  
+  ```ruby
+    has_one :special_thing, class: Thing
+  ```
+
+* `class_name`: specifies the class w.o having to have the class defined. Handy for circular dependencies
+  
+  ```ruby
+    class Person < YamlBSides::Base
+      has_one :nickname, class_name: "Pesudonym"
+    end
+
+    class Pseudonym < YamlBSides::Base
+      belongs_to :bearer, class_name: "Person"
+    end
+  ```
+
+* `through`: many to may association helper. 
+  
+    ```ruby
+    class Person < YamlBSides::Base
+      has_many :person_foods
+      has_many :favorite_foods, through: :person_foods, class_name: "Food"
+    end
+
+    class PersonFood < YamlBSides::Base
+      belongs_to :person
+      belongs_to :food
+    end
+
+    class Food < YamlBSides::Base
+    end
+  ```
+  
+  __NOTE__: only works for `has_one` and `has_many`
 
 ### Example
 

@@ -1,0 +1,9 @@
+five_ten_europ:
+  manufacturer_id: five_ten
+  size_id: european
+five_ten_murica:
+  manufacturer_id: five_ten
+  size_id: american
+sportiva_european:
+  manufacturer_id: la_sportiva
+  size_id: european

@@ -1,12 +1,10 @@
 module YamlBSides
   module Associations
     class HasOne < Base
+      include Through 
+
       def action
         :find_by
-      end
-
-      def query( instance )
-        { key => instance.id }
       end
     end
   end

@@ -42,16 +42,16 @@ module YamlBSides
 
         def find_by_scan(params)
           @data.values.select do |datum|
-            params.all? do |param, expcted_value|
-              datum[param] == expcted_value
+            params.all? do |param, expected_value|
+              val = Array(expected_value).include? datum[param]
             end
           end
         end
 
         def find_by_indexed(params)
           sets = []
-          params.each do |index, value|
-            sets << find_in_index(index, value)
+          params.each do |index, values|
+            sets << find_in_index(index, Array(values))
           end
 
           # find the intersection of all the sets
