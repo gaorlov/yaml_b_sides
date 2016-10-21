@@ -12,6 +12,7 @@ module YamlBSides
   autoload :Associations,   'yaml_b_sides/associations'
   autoload :Base,           'yaml_b_sides/base'
   autoload :Cacheable,      'yaml_b_sides/cacheable'
+  autoload :Errors,         'yaml_b_sides/errors'
   autoload :Instanceable,   'yaml_b_sides/instanceable'
   autoload :Index,          'yaml_b_sides/index'
   autoload :Indexable,      'yaml_b_sides/indexable'

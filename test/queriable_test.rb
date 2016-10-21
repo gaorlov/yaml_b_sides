@@ -32,7 +32,7 @@ class QueriableTest < Minitest::Test
   end
 
   def test_find_miss_raises
-    assert_raises "Record not found: lolwat" do
+    assert_raises YamlBSides::Errors::RecordNotFound, "Record not found: lolwat" do
       Person.find :lolwat
     end
   end

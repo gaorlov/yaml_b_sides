@@ -6,7 +6,7 @@ module YamlBSides
       class << self
         def find(id)
           record = @data[id]
-          raise "Record not found: #{id}" unless record
+          raise Errors::RecordNotFound, "Record not found: #{id}" unless record
           new record
         end
 
