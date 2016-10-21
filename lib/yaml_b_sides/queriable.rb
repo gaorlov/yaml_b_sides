@@ -12,7 +12,7 @@ module YamlBSides
 
         def find_by(params = {})
           results = where params
-          raise "Could not find record that matches: #{params.inspect}" if results.empty?
+          raise Errors::RecordNotFound, "Could not find record that matches: #{params.inspect}" if results.empty?
           results.first
         end
 
