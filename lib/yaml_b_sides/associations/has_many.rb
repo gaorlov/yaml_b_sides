@@ -1,7 +1,7 @@
 module YamlBSides
   module Associations
     class HasMany < Base
-      include Through
+      include Hasable
 
       def action
         :where

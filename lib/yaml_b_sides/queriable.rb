@@ -6,13 +6,13 @@ module YamlBSides
       class << self
         def find(id)
           record = @data[id]
-          raise Errors::RecordNotFound, "Record not found: #{id}" unless record
+          raise Errors::RecordNotFound, "#{self}: Record not found: #{id}" unless record
           new record
         end
 
         def find_by(params = {})
           results = where params
-          raise Errors::RecordNotFound, "Could not find record that matches: #{params.inspect}" if results.empty?
+          raise Errors::RecordNotFound, "#{self}: Could not find record that matches: #{params.inspect}" if results.empty?
           results.first
         end
 

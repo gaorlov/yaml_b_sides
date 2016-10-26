@@ -19,6 +19,7 @@ module YamlBSides
         logger.info "#{self} successfully loaded data"
         # let's preemptively index by id so that when we do a find_by id:, or a where id: it won't table scan
         index :id
+        init_indices!
       rescue => e
         logger.error "#{self} failed to load data: #{e}"
       end

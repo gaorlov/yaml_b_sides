@@ -11,7 +11,9 @@ module YamlBSides
       class << self
 
         def belongs_to( name, opts = {} )
-          process Associations::BelongsTo.new( self, name, opts )
+          association = Associations::BelongsTo.new( self, name, opts )
+          process association
+          index association.key
         end
 
         def has_one( name, opts = {} )
@@ -38,7 +40,7 @@ module YamlBSides
             self._cached_associations ||= {}
 
             unless self._cached_associations.has_key? association.name
-              result = association.klass.send( association.action, association.query( self ) )
+              result = association.klass( self ).send( association.action, association.query( self ) )
               
               self._cached_associations[association.name] = result
             end

@@ -1,22 +1,40 @@
 module YamlBSides
   module Associations
-    module Through
+    module Hasable
       extend ActiveSupport::Concern
 
       included do
 
         def query( instance )
-          unless opts.has_key? :through
-            { key => instance.id }
-          else
+          if through?
             { id: target_ids( instance ) }
+          elsif as?
+            { "#{as}_id" => instance.id }
+          else
+            { key => instance.id }
           end
+        end
+
+        def additional_options
+          [ :as, :through ]
         end
 
         protected
 
         def through
           opts[:through]
+        end
+
+        def through?
+          opts.has_key? :through
+        end
+
+        def as
+          opts[:as]
+        end
+
+        def as?
+          opts.has_key? :as
         end
 
         def target_ids( instance )

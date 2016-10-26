@@ -98,7 +98,7 @@ Associations have some of the standard ActiveRecord options. Namely:
 
 * `through`: many to may association helper. 
   
-    ```ruby
+  ```ruby
     class Person < YamlBSides::Base
       has_many :person_foods
       has_many :favorite_foods, through: :person_foods, class_name: "Food"
@@ -114,6 +114,44 @@ Associations have some of the standard ActiveRecord options. Namely:
   ```
   
   __NOTE__: only works for `has_one` and `has_many`
+
+* `as`: specifies what the associated object calls the caller
+  ```ruby
+    class Person
+      has_many :images, as: :target
+    end
+
+    class Image
+      belongs_to :target, class: Person
+    end
+  ```
+  __NOTE__: only works for `has_one` and `has_many`
+
+* `polymorphic`: specifies a polymorphic `belongs_to` association. Better explanation [here, on the ActiveRecord page](http://guides.rubyonrails.org/association_basics.html#polymorphic-associations)
+  ```ruby
+    class Person
+      has_many :images, as: :target
+    end
+
+    class Party
+      has_many :images, as: :target
+    end
+
+    class Image
+      belongs_to :target, polymorphic: true
+    end
+  ```
+  And then the `images.yml` looks something like
+  ```yml
+    image-1:
+      thing_id: a
+      thing_class: Person
+      # ...
+    image-2:
+      thing_id: a
+      thing_class: PArty
+      #...
+  ```
 
 ### Example
 

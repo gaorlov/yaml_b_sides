@@ -23,6 +23,8 @@ class Person < YamlBSides::Base
   property :not_in_yaml, :lol
   has_many :person_shoes
   has_one :favorite_shoes, through: :person_shoes, class_name: "Shoe"
+
+  has_many :images, as: :thing
 end
 
 class PersonShoe < YamlBSides::Base
@@ -47,6 +49,8 @@ class Manufacturer < YamlBSides::Base
   has_one  :logo
   has_many :manufacturer_sizes
   has_many :sizes, through: :manufacturer_sizes
+
+  has_one :banner, as: :thing, class_name: "Image"
 end
 
 class Shoe < YamlBSides::Base
@@ -54,6 +58,10 @@ class Shoe < YamlBSides::Base
 end
 
 class Size < YamlBSides::Base
+end
+
+class Image < YamlBSides::Base
+  belongs_to :thing, polymorphic: true
 end
 
 require 'minitest/autorun'

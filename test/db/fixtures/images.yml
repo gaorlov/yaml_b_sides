@@ -1,0 +1,12 @@
+five_ten_banner:
+  thing_id: five_ten
+  thing_class: Manufacturer
+  image_url: banner.jpg
+abby_1:
+  thing_id: abby
+  thing_class: Person
+  image_url: a.jpg
+abby_2:
+  thing_id: abby
+  thing_class: Person
+  image_url: b.jpg
