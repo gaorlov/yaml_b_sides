@@ -16,6 +16,13 @@ class YamlBSidesTest < Minitest::Test
     assert_equal :b, a.a
   end
 
+  def test_method_missing_raises_invalid_method_on_missing_method
+    a = Person.send( :new, {id: :lol} )
+    assert_raises YamlBSides::Errors::InvalidFieldError do
+      a.not_a_thing
+    end
+  end
+
   def test_properties_can_be_assigned_in_bulk
     Fake.properties a: :b, c: nil
     assert_equal( { a: :b, c: nil }, Fake.__properties )

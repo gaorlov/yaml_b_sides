@@ -5,5 +5,8 @@ module YamlBSides
 
     class AssociationError < StandardError
     end
+
+    class InvalidFieldError < StandardError
+    end
   end
 end

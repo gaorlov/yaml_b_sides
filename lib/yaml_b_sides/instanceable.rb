@@ -8,7 +8,7 @@ module YamlBSides
         if @attributes.has_key? method
           method = @attributes[method]
         else
-          super
+          raise YamlBSides::Errors::InvalidFieldError, "#{self.class}:#{@attributes[:id]}: Invalid field: '#{method}'"
         end
       end
 
