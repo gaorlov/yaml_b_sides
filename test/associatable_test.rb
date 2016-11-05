@@ -70,4 +70,11 @@ class AssociatableTest < Minitest::Test
       Person.has_many :things, polymorphic: true
     end
   end
+
+  def test_valid_association_with_no_value_does_not_raise
+    assert_equal nil, Person.find( :josh ).favorite_shoes
+    assert_equal [], Manufacturer.find( :boreal ).sizes
+    assert_equal nil, Manufacturer.find( :boreal ).logo
+    assert_equal nil, Logo.find( :mad_rock ).manufacturer
+  end
 end

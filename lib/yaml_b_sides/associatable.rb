@@ -36,15 +36,19 @@ module YamlBSides
         end
 
         def methodize( association )
-          define_method association.name do 
-            self._cached_associations ||= {}
+          define_method association.name do
+            begin
+              self._cached_associations ||= {}
 
-            unless self._cached_associations.has_key? association.name
-              result = association.klass( self ).send( association.action, association.query( self ) )
-              
-              self._cached_associations[association.name] = result
+              unless self._cached_associations.has_key? association.name
+                result = association.klass( self ).send( association.action, association.query( self ) )
+                
+                self._cached_associations[association.name] = result
+              end
+              self._cached_associations[association.name]
+            rescue YamlBSides::Errors::RecordNotFound => e
+              nil
             end
-            self._cached_associations[association.name]
           end
         end
       end

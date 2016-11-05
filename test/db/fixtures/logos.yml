@@ -5,3 +5,7 @@ five_ten:
 la_sportiva:
   manufacturer_id: la_sportiva
   image_url: http://placekitten.com/300/300
+
+mad_rock:
+  manufacturer_id: mad_rock
+  image_url: http://placekitten.com/300/300
