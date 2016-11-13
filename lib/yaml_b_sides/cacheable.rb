@@ -10,7 +10,7 @@ module YamlBSides
       end
 
       def cache_key
-        @cache_key ||= Digest::SHA256.hexdigest(@atrtibutes.to_json)
+        @cache_key ||= Digest::SHA256.hexdigest(@attributes.to_json)
       end
     end
   end
