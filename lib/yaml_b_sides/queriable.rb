@@ -5,7 +5,7 @@ module YamlBSides
     included do
       class << self
         def find(id)
-          record = @data[id]
+          record = data[id]
           raise Errors::RecordNotFound, "#{self}: Record not found: #{id}" unless record
           new record
         end
@@ -17,13 +17,13 @@ module YamlBSides
         end
 
         def all
-          @data.values.map do |obj|
+          data.values.map do |obj|
             new obj
           end
         end
 
         def first
-          new @data.values.first
+          new data.values.first
         end
 
         # TODO: move this into scopes
@@ -41,7 +41,7 @@ module YamlBSides
         private
 
         def find_by_scan(params)
-          @data.values.select do |datum|
+          data.values.select do |datum|
             params.all? do |param, expected_value|
               val = Array(expected_value).include? datum[param]
             end

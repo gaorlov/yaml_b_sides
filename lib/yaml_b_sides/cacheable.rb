@@ -5,7 +5,7 @@ module YamlBSides
     included do
       class << self
         def cache_key
-          @cache_key ||= Digest::SHA256.hexdigest(@data.to_json)
+          @cache_key ||= Digest::SHA256.hexdigest(data.to_json)
         end
       end
 

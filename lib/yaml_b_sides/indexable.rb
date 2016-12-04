@@ -8,14 +8,14 @@ module YamlBSides
 
       class << self
         def index(field)
-          self.__indices = __indices.merge( { field => Index.new(field, @data) } )
+          self.__indices = __indices.merge( { field => Index.new(field, data) } )
         end
 
         def find_in_index(field, values)
           keys = Array(index_for(field).find(values))
           
           keys.map do |id|
-            @data[id]
+            data[id]
           end
         end
 

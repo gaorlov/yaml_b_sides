@@ -18,4 +18,10 @@ module YamlBSides
   autoload :Indexable,      'yaml_b_sides/indexable'
   autoload :Propertiable,   'yaml_b_sides/propertiable'
   autoload :Queriable,      'yaml_b_sides/queriable'
+
+  class << self
+    attr_accessor :live_reload
+  end
+
+  self.live_reload = false
 end

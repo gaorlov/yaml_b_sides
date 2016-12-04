@@ -198,6 +198,11 @@ The setup is pretty straightforward. Yaml B-Sides wants a logger and a base dir 
 ```ruby
 YamlBSides::Base.logger = Rails.logger
 YamlBSides::Base.root_path = Rails.root.join 'db', 'fixtures'
+
+# in development.rb
+
+# eanble reload of the data files to avoid having to restart the server for every change
+YamlBSides.live_reload = true
 ```
 
 ## Development

@@ -18,7 +18,7 @@ module YamlBSides
         idify_data!
         logger.info "#{self} successfully loaded data"
         # let's preemptively index by id so that when we do a find_by id:, or a where id: it won't table scan
-        index :id
+        index :id unless YamlBSides.live_reload
       rescue => e
         logger.error "#{self} failed to load data: #{e}"
       end
@@ -37,6 +37,11 @@ module YamlBSides
         @data.each do |k, v|
           v[:id] = k
         end
+      end
+
+      def data
+        load! if YamlBSides.live_reload
+        @data
       end
     end
   end
