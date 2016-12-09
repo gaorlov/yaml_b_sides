@@ -8,6 +8,7 @@ module YamlBSides
 
       class << self
         def index(field)
+          return if YamlBSides.live_reload
           self.__indices = __indices.merge( { field => Index.new(field, data) } )
         end
 
